@@ -1,0 +1,441 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed5864476f84ce4b85454db09ca4eaa, type: 3}
+  m_Name: graph_0
+  m_EditorClassIdentifier: 
+  AssetPath: Assets/WarDragon/Demo/Material/aged_chrome_pbr.sbsar
+  RawData: {fileID: -244192453324840774, guid: 4324a95d372c45047b5799cdb2e22892, type: 3}
+  Name: graph_0
+  IsRoot: 1
+  FlagedForDelete: 0
+  GUID: 8cc05e61-c9a9-4ecb-a89e-440655575cbf
+  Index: 0
+  Input:
+  - rid: 2559927250531385344
+  - rid: 2559927250531385345
+  - rid: 2559927250531385346
+  - rid: 2559927250531385347
+  - rid: 2559927250531385348
+  - rid: 2559927250531385349
+  - rid: 2559927250531385350
+  - rid: 2559927250531385351
+  - rid: 2559927250531385352
+  - rid: 2559927250531385353
+  - rid: 2559927250531385354
+  - rid: 2559927250531385355
+  - rid: 2559927250531385356
+  - rid: 2559927250531385357
+  - rid: 2559927250531385358
+  - rid: 2559927250531385359
+  Output:
+  - Index: 0
+    VirtualOutputIndex: 5
+    Description:
+      Identifier: basecolor
+      Label: basecolor
+      Index: 0
+      Type: 8
+      Channel: baseColor
+    OutputTexture: {fileID: 2800000, guid: fe1f3ba8e74f93d478e5d6df24da562e, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BaseMap
+  - Index: 1
+    VirtualOutputIndex: 6
+    Description:
+      Identifier: roughness
+      Label: roughness
+      Index: 1
+      Type: 8
+      Channel: roughness
+    OutputTexture: {fileID: 0}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _RoughnessMap
+  - Index: 2
+    VirtualOutputIndex: 7
+    Description:
+      Identifier: metallic
+      Label: metallic
+      Index: 2
+      Type: 8
+      Channel: metallic
+    OutputTexture: {fileID: 2800000, guid: 5e0a341c967f8aa48b8f5c69d3032d67, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: roughness
+    InvertAssignedAlpha: 1
+    Flags: 0
+    MaterialTextureTarget: _MetallicGlossMap
+  - Index: 3
+    VirtualOutputIndex: 8
+    Description:
+      Identifier: height
+      Label: height
+      Index: 3
+      Type: 8
+      Channel: height
+    OutputTexture: {fileID: 2800000, guid: 86209252952d0aa449a5fc6957526f28, type: 3}
+    sRGB: 1
+    IsVirtual: 0
+    IsAlphaAssignable: 1
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _ParallaxMap
+  - Index: 4
+    VirtualOutputIndex: 9
+    Description:
+      Identifier: normal
+      Label: normal
+      Index: 4
+      Type: 8
+      Channel: normal
+    OutputTexture: {fileID: 2800000, guid: efc74fb4565a70545b34026220af4e40, type: 3}
+    sRGB: 0
+    IsVirtual: 0
+    IsAlphaAssignable: 0
+    AlphaChannel: 
+    InvertAssignedAlpha: 0
+    Flags: 0
+    MaterialTextureTarget: _BumpMap
+  HasPhysicalSize: 0
+  PhysicalSize: {x: 0, y: 0, z: 0}
+  EnablePhysicalSize: 0
+  Thumbnail: 
+  CurrentStatePreset: 
+  IsRuntimeOnly: 0
+  GenerateAllOutputs: 0
+  GenerateAllMipmaps: 1
+  OutputMaterial: {fileID: 2100000, guid: 651c74575c5326743a97a8b4c4e32527, type: 2}
+  DefaultPreset: " <sbspreset pkgurl=\"pkg://aged_chrome_pbr/aged_chrome_pbr\" label=\"\"
+    >\n  <presetinput identifier=\"$outputsize\" uid=\"1845556577\" type=\"8\" value=\"10,10\"
+    />\n </sbspreset>\n"
+  MaterialShader: Universal Render Pipeline/Lit
+  RenderTextures: 0
+  OutputRemaped: 0
+  Presets: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 2559927250531385344
+      type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 0
+        Description:
+          Identifier: $outputsize
+          Label: $outputsize
+          GuiGroup: 
+          GuiDescription: 
+          Type: 5
+          WidgetType: 0
+        Data: {x: 10, y: 10}
+        NumericalDescription:
+          DefaultValue: {x: 8, y: 8}
+          MinValue: {x: 0, y: 0}
+          MaxValue: {x: 1, y: 1}
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385345
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 1
+        Description:
+          Identifier: $randomseed
+          Label: $randomseed
+          GuiGroup: 
+          GuiDescription: 
+          Type: 4
+          WidgetType: 0
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385346
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 2
+        Description:
+          Identifier: Scratches
+          Label: Scratches
+          GuiGroup: 
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.5
+        NumericalDescription:
+          DefaultValue: 0.5
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385347
+      type: {class: SubstanceInputTexture, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 3
+        Description:
+          Identifier: wear_map
+          Label: wear_map
+          GuiGroup: 
+          GuiDescription: Insert a wear map here.
+          Type: 8
+          WidgetType: 7
+        Data: {fileID: 0}
+    - rid: 2559927250531385348
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 4
+        Description:
+          Identifier: Corrosion
+          Label: Corrosion
+          GuiGroup: 
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.75
+        NumericalDescription:
+          DefaultValue: 0.75
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385349
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 5
+        Description:
+          Identifier: Age
+          Label: Age
+          GuiGroup: 
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.95
+        NumericalDescription:
+          DefaultValue: 0.95
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385350
+      type: {class: SubstanceInputTexture, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 6
+        Description:
+          Identifier: curvature
+          Label: curvature
+          GuiGroup: 
+          GuiDescription: Insert a Curvature map here.
+          Type: 8
+          WidgetType: 7
+        Data: {fileID: 0}
+    - rid: 2559927250531385351
+      type: {class: SubstanceInputTexture, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 7
+        Description:
+          Identifier: ambient_occlusion
+          Label: ambient_occlusion
+          GuiGroup: 
+          GuiDescription: 'Insert a Ambient Occlusion map here.
+
+'
+          Type: 8
+          WidgetType: 7
+        Data: {fileID: 0}
+    - rid: 2559927250531385352
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 8
+        Description:
+          Identifier: wear_level
+          Label: Wear Level
+          GuiGroup: edge_wear
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.75
+        NumericalDescription:
+          DefaultValue: 0.75
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385353
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 9
+        Description:
+          Identifier: wear_contrast
+          Label: Wear Contrast
+          GuiGroup: edge_wear
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.5
+        NumericalDescription:
+          DefaultValue: 0.5
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 1
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385354
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 10
+        Description:
+          Identifier: edges_smoothness
+          Label: Edges Smoothness
+          GuiGroup: edge_wear
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 8
+        NumericalDescription:
+          DefaultValue: 8
+          MinValue: 0
+          MaxValue: 16
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385355
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 11
+        Description:
+          Identifier: grunge_amount
+          Label: Grunge Amount
+          GuiGroup: edge_wear
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.4
+        NumericalDescription:
+          DefaultValue: 0.4
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385356
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 12
+        Description:
+          Identifier: grunge_scale
+          Label: Grunge Scale
+          GuiGroup: edge_wear
+          GuiDescription: 
+          Type: 4
+          WidgetType: 1
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 1
+          MaxValue: 16
+          SliderStep: 1
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385357
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 13
+        Description:
+          Identifier: ao_masking
+          Label: Ambient Occlusion Masking
+          GuiGroup: edge_wear
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 0.95
+        NumericalDescription:
+          DefaultValue: 0.95
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385358
+      type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 14
+        Description:
+          Identifier: curvature_weight
+          Label: Curvature Weight
+          GuiGroup: edge_wear
+          GuiDescription: 
+          Type: 0
+          WidgetType: 1
+        Data: 1
+        NumericalDescription:
+          DefaultValue: 1
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          EnumValueCount: 0
+          EnumValues: []
+    - rid: 2559927250531385359
+      type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
+      data:
+        Index: 15
+        Description:
+          Identifier: OpenGL_Normal_Map
+          Label: OpenGL_Normal_Map
+          GuiGroup: 
+          GuiDescription: 
+          Type: 4
+          WidgetType: 4
+        Data: 0
+        NumericalDescription:
+          DefaultValue: 0
+          MinValue: 0
+          MaxValue: 1
+          SliderStep: 0.01
+          SliderClamp: 0
+          LabelFalse: 
+          LabelTrue: 
+          EnumValueCount: 0
+          EnumValues: []
