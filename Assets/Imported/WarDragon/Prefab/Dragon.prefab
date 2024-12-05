@@ -972,10 +972,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209740243944155597}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000018402129, y: -0.0000011287631, z: 0.00000033817852,
-    w: 1}
-  m_LocalPosition: {x: -0.24685259, y: 0.0000000038359755, z: 0.000045732428}
-  m_LocalScale: {x: 0.99999994, y: 1, z: 0.9999999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3736238170887273479}
@@ -986,7 +985,7 @@ Transform:
   - {fileID: 2087869959334733247}
   - {fileID: 5815442271426285592}
   m_Father: {fileID: 7838961975188219384}
-  m_LocalEulerAnglesHint: {x: 0.00002407866, y: -0.00013515272, z: 0.00004105408}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1231177632988630729
 GameObject:
   m_ObjectHideFlags: 0
@@ -6234,8 +6233,8 @@ MonoBehaviour:
   takeOffSpeed: 2
   groundChargeTime: 5
   flyChargeTime: 5
-  flyModeTime: 3
-  groundModeTime: 20
+  flyModeTime: 15
+  groundModeTime: 15
   isGround: 1
   flyAltitude: 30
   foots:

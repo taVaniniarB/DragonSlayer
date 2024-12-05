@@ -18,28 +18,36 @@ public class ChargeState : StateMachineBehaviour
         dragon = animator.GetComponent<Dragon>();
         charge = animator.GetComponent<ChargeAttack>();
         charge.isCharging = true;
-
-        // 돌진 방향 세팅
-        Vector3 dir = (playerTransform.position - transform.position).normalized;
-        transform.rotation = Quaternion.LookRotation(dir);
         animator.SetBool("Walk", false);
         animator.SetBool("Run", true);
-        Debug.Log("돌진 방향 세팅 완료");
+
+        // 돌진 방향 세팅
+        SetChargeDir();
     }
+
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        float dt = Time.deltaTime;
+        transform.position += transform.forward * Time.deltaTime * dragon.GroundChargeSpeed;
 
-        transform.position += transform.forward * dt * dragon.GroundChargeSpeed;
-        
-        if (curTime > dragon.groundChargeTime)
+        ChargeTimeCheck(animator);
+    }
+
+    private void SetChargeDir()
+    {
+        Vector3 dir = (playerTransform.position - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(dir);
+        Debug.Log("돌진 방향 세팅 완료");
+    }
+    private void ChargeTimeCheck(Animator animator)
+    {
+        if (curTime >= dragon.groundChargeTime)
         {
             animator.SetBool("Run", false);
             animator.SetBool("Walk", true);
             curTime = 0f;
         }
-        curTime += dt;
+        curTime += Time.deltaTime;
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

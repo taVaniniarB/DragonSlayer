@@ -16,12 +16,12 @@ public class Dragon : MonoBehaviour
     public float flyChargeTime = 5f;
 
     [Header("Mode")]
-    public float flyModeTime = 10f;
-    public float groundModeTime = 10f;
+    public float flyModeTime = 15f;
+    public float groundModeTime = 15f;
     public bool isGround = true;
     float curGroundTime = 0;
 
-    public float flyAltitude = 30f;
+    public float flyAltitude = 40f;
     float takeOffTime = 0.5f;
     float curTakeOffTime = 0f;
 
@@ -56,10 +56,6 @@ public class Dragon : MonoBehaviour
 
     void LateUpdate()
     {
-        //Look at
-        //ComputeKinematic(m_headLook);
-
-
         //jaw
         jawOpenRatio = Mathf.Clamp01(jawOpenRatio);
         if (jaw != null)
@@ -72,14 +68,12 @@ public class Dragon : MonoBehaviour
     {
         // 입을 다 벌린 다음 파티클 On
         jawOpenRatio = 1f;
-        //StartCoroutine(CoOpenJaw(jawOpenTime));
         fire.BreathStart();
     }
 
     public void BreathEnd()
     {
         jawOpenRatio = 0f;
-        //StartCoroutine(CoOpenJaw(jawCloseTime));
         fire.BreathEnd();
     }
 
@@ -100,7 +94,7 @@ public class Dragon : MonoBehaviour
     {
         animator.SetBool("Fly", true);
         animator.SetBool("Walk", false);
-        isGround = false;
+        //isGround = false; <- 진짜 fly 진입 시점에서 실행되도록 변경
         curGroundTime = 0f;
     }
 

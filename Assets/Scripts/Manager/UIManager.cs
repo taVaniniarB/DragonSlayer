@@ -41,13 +41,11 @@ public class UIManager : MonoBehaviour
         // 패널 프리팹 객체화하여 캔버스 하위에 배치
         if (fadePanelPrefab != null)
         {
-            // fadeCanvas 태그를 가진 캔버스를 하나 추가해주자
-            Canvas canvas = FindObjectOfType<Canvas>();
-            //Canvas fadeCanvas = FindObjectOfType<FadeCanvas>();
-            if (canvas == null) { Debug.Log("캔버스 못 찾음"); }
+            GameObject fadeCanvas = GameObject.FindWithTag("FadeCanvas");
+            if (fadeCanvas == null) { Debug.Log("캔버스 못 찾음"); }
             
             //Instantiate(Object original, Transform parent);
-            fadePanelInst = Instantiate(fadePanelPrefab, canvas.transform);
+            fadePanelInst = Instantiate(fadePanelPrefab, fadeCanvas.transform);
             if (fadePanelInst == null) { Debug.Log("fade panel 인스턴스화 실패"); }
 
             FadeManager.Instance.panel = fadePanelInst;

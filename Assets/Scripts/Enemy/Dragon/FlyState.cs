@@ -23,6 +23,8 @@ public class FlyState : StateMachineBehaviour
     float fireDecSpeed = 3f;
     float turnSpeed = 0.5f;
 
+    public float constraintPitch = 45f;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         dragon = animator.GetComponent<Dragon>();
@@ -38,7 +40,7 @@ public class FlyState : StateMachineBehaviour
         curFlyTime = 0f;
 
 
-
+        dragon.isGround = false;
         dragon.BreathStart();
     }
 
@@ -62,7 +64,8 @@ public class FlyState : StateMachineBehaviour
         {
             //Debug.Log("flying");
             fireIntensity += Time.deltaTime;
-            RotateToPlayer();
+            TurnToPlayer();
+            //PitchToPlayer();
         }
 
         prevDescenting = isDescenting;
@@ -72,17 +75,31 @@ public class FlyState : StateMachineBehaviour
         curFlyTime += Time.deltaTime;
     }
 
-    void RotateToPlayer()
+    void TurnToPlayer()
     {
-        Vector3 lookDir = Vector3.Scale((playerTransform.position - transform.position).normalized, new Vector3(1, 0, 1));
-        Quaternion lookRotation = Quaternion.LookRotation(lookDir);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, ratio);
-        ratio += Time.deltaTime * turnSpeed;
+        // 플레이어와의 방향 계산
+        Vector3 lookDir = (playerTransform.position - transform.position).normalized;
+
+        // 목표 회전 계산
+        Quaternion targetRotation = Quaternion.LookRotation(lookDir);
+
+        // 회전 각도 제한 적용
+        Vector3 targetEulerAngles = targetRotation.eulerAngles;
+
+        // Pitch 제한
+        if (targetEulerAngles.x > 180f) targetEulerAngles.x -= 360f;
+        targetEulerAngles.x = Mathf.Clamp(targetEulerAngles.x, -constraintPitch, constraintPitch);
+
+        Quaternion finalRotation = Quaternion.Euler(targetEulerAngles);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, finalRotation, Time.deltaTime * turnSpeed);
     }
+
 
     private void DownTrigger(Animator animator)
     {
-        // 네 발 아래로 ray를 쏴서 가장 큰 dist를 하강량으로 저장
+        // 1. 네 발 아래로 ray를 쏴서 가장 큰 dist를 하강량으로 저장
+        // 2. pitch 원상복귀
 
         for (int i = 0; i < foots.Length; i++)
         {

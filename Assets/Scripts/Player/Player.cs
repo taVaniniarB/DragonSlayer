@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float ATK = 25f;
     public float SkillDamage;
     Animator animator;
-    PlayerStat PlayerHealth;
+    PlayerStat stat;
 
     void Awake()
     {
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     {
         GameManager.Instance.StartGame();
         animator = GetComponent<Animator>();
-        PlayerHealth = GetComponent<PlayerStat>();
+        stat = GetComponent<PlayerStat>();
         SkillDamage = ATK * 2;
     }
 
@@ -28,7 +28,18 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             animator.SetTrigger("Dodge");
-            PlayerHealth.DecreaseMP(3f);
+            stat.DecreaseMP(3f);
+        }
+
+        // HP 즉시회복 치트키 (Ctrl + C)
+        if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.LeftControl))
+        {
+            stat.IncreaseHP(100);
+        }
+        // MP 즉시회복 치트키 (Ctrl + V)
+        if (Input.GetKeyDown(KeyCode.V) && Input.GetKey(KeyCode.LeftControl))
+        {
+            stat.IncreaseHP(100);
         }
     }
 }

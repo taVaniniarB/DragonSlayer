@@ -12,17 +12,14 @@ public class PlayerAttack : MonoBehaviour
     private AudioSource audioSource;
     [Header("Combo Setting")]
     public bool isAttackable = true; // 공격 가능 타이밍 제어
-    bool comboInput = false;
-    int curComboCnt = 0;
+    public bool comboInput = false;
+    public int curComboCnt = 0;
 
-
-    private CharacterController _controller;
 
     void Start()
     {
         TryGetComponent(out animator);
         audioSource = GetComponent<AudioSource>();
-        _controller = GetComponent<CharacterController>();
         weaponCollider.enabled = false;
     }
 
@@ -91,13 +88,18 @@ public class PlayerAttack : MonoBehaviour
         comboInput = false;
     }
 
-    // Attack 관련 변수 초기화
+    // 콤보 관련 변수 초기화
     public void ExitAttack()
-    { 
-        //Debug.Log("Exit Attack Called");
+    {
+        InitAttackCombo();
+        animator.SetTrigger("ExitAttack");
+    }
+
+    public void InitAttackCombo()
+    {
         isAttackable = true;
         curComboCnt = 0;
         WeaponCollisionDisable();
-        animator.SetTrigger("ExitAttack");
+        animator.ResetTrigger("ExitAttack");
     }
 }

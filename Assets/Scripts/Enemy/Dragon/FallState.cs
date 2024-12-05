@@ -10,9 +10,13 @@ public class FallState : StateMachineBehaviour
 
     float fallSpeed = 5f;
     Transform transform;
+    Dragon dragon;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        dragon = animator.GetComponent<Dragon>();
+        dragon.BreathEnd();
+
         transform = animator.transform;
         stayY = transform.position.y;
         // raycast로 높이 계산, 목표 도달 높이 계산
@@ -24,21 +28,6 @@ public class FallState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        /*float newY = Mathf.Lerp(stayY, targetHeight, curDownTime / downTime);
-
-        Vector3 currentPosition = animator.transform.position;
-        animator.transform.position = new Vector3(currentPosition.x, newY, currentPosition.z);
-
-        curDownTime += Time.deltaTime;
-
-        // fall 종료
-        if (curDownTime > downTime)
-        {
-            //위치 보정
-            animator.transform.position = new Vector3(animator.transform.position.x, targetHeight, animator.transform.position.z);
-            animator.SetTrigger("FallEnd");
-        }*/
-
         transform.position = new Vector3(transform.position.x, (transform.position.y - (fallSpeed * Time.deltaTime)), transform.position.z);
 
         if(transform.position.y <= targetHeight)

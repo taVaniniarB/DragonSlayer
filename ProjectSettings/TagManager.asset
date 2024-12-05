@@ -8,6 +8,7 @@ TagManager:
   - Monster
   - Dragon
   - Slash
+  - FadeCanvas
   layers:
   - Default
   - TransparentFX
