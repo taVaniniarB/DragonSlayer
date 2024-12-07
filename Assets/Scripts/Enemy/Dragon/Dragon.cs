@@ -2,6 +2,7 @@ using Kalagaan;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Dragon : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Dragon : MonoBehaviour
     public float takeOffSpeed = 2f;
 
     [Header("Charge")]
-    public float groundChargeTime = 5f;
+    public float groundChargeTime = 4f;
     public float flyChargeTime = 5f;
 
     [Header("Mode")]
@@ -43,6 +44,11 @@ public class Dragon : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void FixedUpdate()
+    {
+
+    }
+
     void Update()
     {
         // ground 시간을 채울 시 fly로 전환, ground 변수들 초기화
@@ -63,10 +69,39 @@ public class Dragon : MonoBehaviour
             if (jawOpenRatio > 0)
                 jaw.localRotation = Quaternion.Euler(-180f, Mathf.Lerp(jawLimit.x, jawLimit.y, jawOpenRatio), 0f);
         }
+
+        // dragon 아래로 ray 쏴서 y값 조정 (땅 위로 고정)
+        if (isGround)
+        {
+            RaycastHit hitDown, hitUp;
+            int layerMask = LayerMask.GetMask("Ground");
+            float curY = transform.position.y;
+            float newY = transform.position.y;
+
+            // 아래로 Raycast
+            bool hitGroundBelow = Physics.Raycast(transform.position, Vector3.down, out hitDown, Mathf.Infinity, layerMask);
+
+            // 위로 Raycast
+            Vector3 high = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
+            bool hitGroundAbove = Physics.Raycast(high, Vector3.down, out hitUp, Mathf.Infinity, layerMask);
+
+            if (hitGroundBelow && transform.position.y > hitDown.point.y)
+            {
+                // 드래곤이 땅보다 위에 있는 경우
+                newY = hitDown.point.y;
+            }
+            else if (hitGroundAbove && transform.position.y < hitUp.point.y)
+            {
+                // 드래곤이 땅보다 아래에 있는 경우
+                newY = hitUp.point.y;
+            }
+
+            // 위치 갱신
+            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        }
     }
     public void BreathStart()
     {
-        // 입을 다 벌린 다음 파티클 On
         jawOpenRatio = 1f;
         fire.BreathStart();
     }
@@ -94,7 +129,6 @@ public class Dragon : MonoBehaviour
     {
         animator.SetBool("Fly", true);
         animator.SetBool("Walk", false);
-        //isGround = false; <- 진짜 fly 진입 시점에서 실행되도록 변경
         curGroundTime = 0f;
     }
 

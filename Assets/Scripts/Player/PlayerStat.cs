@@ -16,7 +16,8 @@ public class PlayerStat : MonoBehaviour
 
     public bool godMode = false; // 무적 모드
 
-    public float fireTime = 1f;
+    float MPRecoverTime = 1f;
+    float MPRecoverAmount = 1f;
 
     Animator animator;
 
@@ -25,6 +26,8 @@ public class PlayerStat : MonoBehaviour
         animator = GetComponent<Animator>();
         curHP = maxHP;
         curMP = maxMP;
+
+        StartCoroutine(CoMPRecorver(MPRecoverTime));
     }
     void Update()
     {
@@ -44,7 +47,7 @@ public class PlayerStat : MonoBehaviour
     }
     public void IncreaseHP(float amount)
     {
-        curHP += amount;
+        curHP += Mathf.Clamp(amount, 0, maxHP - curHP);
     }
 
     public void DecreaseMP(float amount)
@@ -53,7 +56,7 @@ public class PlayerStat : MonoBehaviour
     }
     public void IncreaseMP(float amount)
     {
-        curMP += amount;
+        curMP += Mathf.Clamp(amount, 0, maxMP - curMP);
     }
 
     void OnParticleCollision(GameObject other)
@@ -78,11 +81,16 @@ public class PlayerStat : MonoBehaviour
         GetComponent<PlayerInputController>().Disable();
 
         GetComponent<PlayerMouseLook>().enabled = false;
+
+        StopCoroutine("CoMPRecorver");
     }
 
-    IEnumerator Extinguish()
+    IEnumerator CoMPRecorver(float recoverTime)
     {
-        yield return new WaitForSeconds(fireTime);
-        isBurning = false;
+        while(true)
+        {
+            IncreaseMP(MPRecoverAmount);
+            yield return new WaitForSeconds(recoverTime);
+        }
     }
 }

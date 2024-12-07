@@ -108,6 +108,18 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-2445685376262745252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495e0f3403f0c0a4482080820890c023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1101 &-1357153116662044386
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1214,7 +1226,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000013268570952}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -2445685376262745252}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1294,7 +1307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a3857afb310064abfde36b78716888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  constraintPitch: 45
+  maxPitch: 45
 --- !u!114 &5111531005473723946
 MonoBehaviour:
   m_ObjectHideFlags: 1

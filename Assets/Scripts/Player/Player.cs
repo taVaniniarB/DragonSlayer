@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
             stat.DecreaseMP(3f);
         }
 
+
         // HP 즉시회복 치트키 (Ctrl + C)
         if (Input.GetKeyDown(KeyCode.C) && Input.GetKey(KeyCode.LeftControl))
         {
@@ -39,7 +40,7 @@ public class Player : MonoBehaviour
         // MP 즉시회복 치트키 (Ctrl + V)
         if (Input.GetKeyDown(KeyCode.V) && Input.GetKey(KeyCode.LeftControl))
         {
-            stat.IncreaseHP(100);
+            stat.IncreaseMP(100);
         }
     }
 }

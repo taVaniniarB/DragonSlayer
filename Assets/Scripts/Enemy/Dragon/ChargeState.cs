@@ -9,7 +9,6 @@ public class ChargeState : StateMachineBehaviour
     Dragon dragon;
     ChargeAttack charge;
     float curTime = 0f;
-    Vector3 dir;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -35,7 +34,8 @@ public class ChargeState : StateMachineBehaviour
 
     private void SetChargeDir()
     {
-        Vector3 dir = (playerTransform.position - transform.position).normalized;
+        Vector3 dir = (playerTransform.position - transform.position);
+        dir = Vector3.Scale(dir, new Vector3(1, 0, 1)).normalized;
         transform.rotation = Quaternion.LookRotation(dir);
         Debug.Log("돌진 방향 세팅 완료");
     }

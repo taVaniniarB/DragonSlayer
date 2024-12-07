@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerSkill : MonoBehaviour
 {
     Animator animator;
-    //public ParticleSystem SlashParticle;
     public GameObject slashPrefab;
     AudioSource audioSource;
     public AudioClip skillSFX;
@@ -17,7 +16,7 @@ public class PlayerSkill : MonoBehaviour
     public float slashSpeed = 20f;
     public float slashLifeTime = 3f;
     float curElapsed; // 스킬 사용 후 경과 시간
-    bool canSkill = true;
+    public bool canSkill = true;
     PlayerStat state;
     private Camera mainCamera;
     void Start()

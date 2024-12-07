@@ -13,17 +13,19 @@ public class FlyState : StateMachineBehaviour
     BreathAttack breath;
     Transform transform;
     Transform playerTransform;
-    float ratio = 0f;
     MonoBehaviour monoBehaviour;
     
     float descentAmount = 0f;
     bool isDescenting = false;
     bool prevDescenting = false;
-    float fireIntensity = 0;
-    float fireDecSpeed = 3f;
-    float turnSpeed = 0.5f;
 
-    public float constraintPitch = 45f;
+    float downTime = 1f;
+    float downOffset = 2f;
+    float pitchResetTime = 1f;
+
+    float turnSpeed = 0.7f;
+    public float maxPitch = 45f;
+
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -40,7 +42,6 @@ public class FlyState : StateMachineBehaviour
         curFlyTime = 0f;
 
 
-        dragon.isGround = false;
         dragon.BreathStart();
     }
 
@@ -54,23 +55,13 @@ public class FlyState : StateMachineBehaviour
             DownTrigger(animator);
         }
 
-        
-        if (isDescenting)
+
+        if (!isDescenting)
         {
-            //Debug.Log("하강중");
-            fireIntensity -= Time.deltaTime * fireDecSpeed;
-        }
-        else
-        {
-            //Debug.Log("flying");
-            fireIntensity += Time.deltaTime;
             TurnToPlayer();
-            //PitchToPlayer();
         }
 
         prevDescenting = isDescenting;
-
-        //dragon.isBreathing = fireIntensity;
 
         curFlyTime += Time.deltaTime;
     }
@@ -88,7 +79,7 @@ public class FlyState : StateMachineBehaviour
 
         // Pitch 제한
         if (targetEulerAngles.x > 180f) targetEulerAngles.x -= 360f;
-        targetEulerAngles.x = Mathf.Clamp(targetEulerAngles.x, -constraintPitch, constraintPitch);
+        targetEulerAngles.x = Mathf.Clamp(targetEulerAngles.x, -maxPitch, maxPitch);
 
         Quaternion finalRotation = Quaternion.Euler(targetEulerAngles);
 
@@ -101,7 +92,7 @@ public class FlyState : StateMachineBehaviour
         // 1. 네 발 아래로 ray를 쏴서 가장 큰 dist를 하강량으로 저장
         // 2. pitch 원상복귀
 
-        for (int i = 0; i < foots.Length; i++)
+        /*for (int i = 0; i < foots.Length; i++)
         {
             // ray의 시작점
             Vector3 footYPos = foots[i].transform.position;
@@ -112,11 +103,19 @@ public class FlyState : StateMachineBehaviour
 
             // ray들 중 가장 긴 거리 값을 하강량으로 저장
             descentAmount = Mathf.Max(descentAmount, hit.distance);
-        }
+        }*/
         //Debug.Log($"하강량: {descentAmount}");
+
+        // raycast로 높이 계산, 목표 도달 높이 계산
+        RaycastHit hit;
+        Physics.Raycast(transform.position, Vector3.down, out hit);
+        descentAmount = hit.distance;
+
+
         dragon.BreathEnd();
         curFlyTime = 0f;
         monoBehaviour.StartCoroutine(CoDown(animator, descentAmount));
+        monoBehaviour.StartCoroutine(CoResetPitch(animator, pitchResetTime));
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -128,9 +127,8 @@ public class FlyState : StateMachineBehaviour
     IEnumerator CoDown(Animator animator, float amount)
     {
         float curDownTime = 0f;
-        float downTime = 1f;
         float stayY = animator.transform.position.y;
-        float targetHeight = stayY - amount + 2;
+        float targetHeight = stayY - amount/* + downOffset*/;
 
         while (curDownTime <= downTime)
         {
@@ -148,9 +146,29 @@ public class FlyState : StateMachineBehaviour
         // 루프 종료 후 위치 보정
         animator.transform.position = new Vector3(animator.transform.position.x, targetHeight, animator.transform.position.z);
 
-        breath.enabled = false;
-        // Fly 애니메이션 종료 설정
+        //breath.enabled = false;
+
         animator.SetBool("Fly", false);
         animator.SetBool("Walk", true);
+    }
+
+    IEnumerator CoResetPitch(Animator animator, float pitchResetTime)
+    {
+        float curTime = 0f;
+
+        // 현재 로테이션과 목표 로테이션 설정
+        Quaternion startRotation = animator.transform.rotation;
+        Quaternion targetRotation = Quaternion.Euler(0f, startRotation.eulerAngles.y, startRotation.eulerAngles.z);
+
+        while (curTime <= pitchResetTime)
+        {
+            // Lerp를 사용하여 점진적으로 로테이션 복구
+            animator.transform.rotation = Quaternion.Lerp(startRotation, targetRotation, curTime / pitchResetTime);
+            curTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 보정
+        animator.transform.rotation = targetRotation;
     }
 }
