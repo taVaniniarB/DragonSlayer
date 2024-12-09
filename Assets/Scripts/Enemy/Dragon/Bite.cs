@@ -4,12 +4,12 @@ using UnityEngine;
 // jaw collider에 붙는 스크립트
 public class Bite : MonoBehaviour
 {
-    PlayerStat target;
+    PlayerState target;
     float damage;
 
     void Start()
     {
-        target = GameManager.Instance.playerInst.GetComponent<PlayerStat>();
+        target = GameManager.Instance.playerInst.GetComponent<PlayerState>();
         damage = transform.root.GetComponent<BiteAttack>().biteDamage;
     }
 

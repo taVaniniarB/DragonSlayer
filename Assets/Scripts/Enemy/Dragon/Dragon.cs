@@ -22,11 +22,9 @@ public class Dragon : MonoBehaviour
     public bool isGround = true;
     float curGroundTime = 0;
 
-    public float flyAltitude = 40f;
     float takeOffTime = 0.5f;
     float curTakeOffTime = 0f;
 
-    public BoxCollider[] foots;
     public Transform jaw;
 
     public float jawOpenRatio = 0f;
@@ -44,11 +42,6 @@ public class Dragon : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void FixedUpdate()
-    {
-
-    }
-
     void Update()
     {
         // ground 시간을 채울 시 fly로 전환, ground 변수들 초기화
@@ -57,25 +50,33 @@ public class Dragon : MonoBehaviour
             EnterFly();
         }
 
-        UpdateGroundVars();
+        UpdateGround();
     }
 
     void LateUpdate()
     {
-        //jaw
+        UpdateJaw();
+
+        UpdateYPos();
+    }
+
+    private void UpdateJaw()
+    {
         jawOpenRatio = Mathf.Clamp01(jawOpenRatio);
         if (jaw != null)
         {
             if (jawOpenRatio > 0)
-                jaw.localRotation = Quaternion.Euler(-180f, Mathf.Lerp(jawLimit.x, jawLimit.y, jawOpenRatio), 0f);
+                jaw.localRotation = Quaternion.Euler(0f, Mathf.Lerp(jawLimit.x, jawLimit.y, jawOpenRatio), 0f); // mark
         }
+    }
 
+    private void UpdateYPos()
+    {
         // dragon 아래로 ray 쏴서 y값 조정 (땅 위로 고정)
         if (isGround)
         {
             RaycastHit hitDown, hitUp;
             int layerMask = LayerMask.GetMask("Ground");
-            float curY = transform.position.y;
             float newY = transform.position.y;
 
             // 아래로 Raycast
@@ -100,6 +101,7 @@ public class Dragon : MonoBehaviour
             transform.position = new Vector3(transform.position.x, newY, transform.position.z);
         }
     }
+
     public void BreathStart()
     {
         jawOpenRatio = 1f;
@@ -112,7 +114,7 @@ public class Dragon : MonoBehaviour
         fire.BreathEnd();
     }
 
-    private void UpdateGroundVars()
+    private void UpdateGround()
     {
         if (isGround)
         {
@@ -139,7 +141,7 @@ public class Dragon : MonoBehaviour
     }
 
     // take_off 애니메이션에서 이륙 순간 이벤트로 호출
-    public void takeOff()
+    public void TakeOff()
     {
         StartCoroutine(CoTakeOff());
     }

@@ -31,6 +31,7 @@ public class StateController : MonoBehaviour
         animator.SetBool(StateNameToChange, false);
     }
 
+    // attack 애니메이션 종료 시점에 호출
     public void AttackCounter()
     {
         int attackCount = animator.GetInteger("AttackCount");

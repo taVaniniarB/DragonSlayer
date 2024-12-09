@@ -44,7 +44,6 @@ public class UIManager : MonoBehaviour
             GameObject fadeCanvas = GameObject.FindWithTag("FadeCanvas");
             if (fadeCanvas == null) { Debug.Log("캔버스 못 찾음"); }
             
-            //Instantiate(Object original, Transform parent);
             fadePanelInst = Instantiate(fadePanelPrefab, fadeCanvas.transform);
             if (fadePanelInst == null) { Debug.Log("fade panel 인스턴스화 실패"); }
 

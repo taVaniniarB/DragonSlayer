@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("게임 상태")]
+    [Header("Game State")]
     public GameState currentState = GameState.Exploration;
     public bool allMonstersDefeated = false;
     public bool bossAreaEntered = false;
@@ -45,8 +45,6 @@ public class GameManager : MonoBehaviour
             _instance = this;
         }
         DontDestroyOnLoad(gameObject);
-
-        Debug.Log("GameManager Awake");
     }
 
     private void OnDestroy()
@@ -78,12 +76,6 @@ public class GameManager : MonoBehaviour
         if (bossAreaEntered && allMonstersDefeated)
         {
             StartBossBattle();
-        }
-
-        // 치트키
-        if (Input.GetKeyDown("p"))
-        {
-            playerInst.ATK = 100f;
         }
     }
 

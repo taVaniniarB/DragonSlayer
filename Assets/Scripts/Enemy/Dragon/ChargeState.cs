@@ -37,7 +37,6 @@ public class ChargeState : StateMachineBehaviour
         Vector3 dir = (playerTransform.position - transform.position);
         dir = Vector3.Scale(dir, new Vector3(1, 0, 1)).normalized;
         transform.rotation = Quaternion.LookRotation(dir);
-        Debug.Log("돌진 방향 세팅 완료");
     }
     private void ChargeTimeCheck(Animator animator)
     {

@@ -10,13 +10,4 @@ public class UndeadIdleState : StateMachineBehaviour
         controller = animator.gameObject.GetComponent<StateController>();
         controller.TriggerStateWithDelay("Idle", "Wander", controller.idleTime);
     }
-
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-    }
-
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        
-    }
 }

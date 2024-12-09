@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Slash : MonoBehaviour
 {
-    // 오브젝트 풀링으로 개선
-
     Player player;
     public ParticleSystem ps;
 
     CameraShacker camShake;
-    CameraShacker.CamShakeInfo camShakeInfo = new CameraShacker.CamShakeInfo(0.3f, 0.7f, 200f);
+    CameraShacker.CamShakeInfo camShakeInfo = new(0.3f, 0.7f, 200f);
 
     private void Start()
     {

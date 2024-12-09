@@ -2,19 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 플레이어가 일정 범위 내로 들어오면 Bite
-
-// enter 당시 플레이어의 좌표를 저장해두고
-// 그 좌표 중심으로 원을 그리며 이동 (Slerp)
-// walk 진입 전에 일정 거리가 확보되어야 함
-// bite -> run(반대방향으로 이동) -> walk
 public class WalkState : StateMachineBehaviour
 {
     Transform playerTransform;
     Transform transform;
-    Transform headTransform;
     Vector3 origin;
-    //int dirSign = 1; // 반시계: 1 / 시계: -1
     Dragon dragon;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -38,7 +30,6 @@ public class WalkState : StateMachineBehaviour
     private void MoveCircle()
     {
         // 점의 2차원 회전 변환
-        // https://satlab.tistory.com/91
         
         Vector3 curPos = transform.position;
 
@@ -46,8 +37,6 @@ public class WalkState : StateMachineBehaviour
         Vector3 offset = curPos - origin;
 
         float radius = offset.magnitude; // 원의 반지름
-
-        if (radius <= 1e-2) return; // 반지름이 너무 작으면 패스
 
         // 한 프레임 동안 움직일 각도
         float angle = (dragon.walkSpeed * Time.deltaTime) / radius;
@@ -65,10 +54,5 @@ public class WalkState : StateMachineBehaviour
         // 드래곤이 바라보는 방향 설정
         Vector3 forward = (newPos - curPos).normalized;
         transform.rotation = Quaternion.LookRotation(forward);
-    }
-
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
     }
 }

@@ -8,14 +8,4 @@ public class TakeOffState : StateMachineBehaviour
     {
         animator.GetComponent<Dragon>().isGround = false;
     }
-
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        
-    }
-
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        
-    }
 }

@@ -91,9 +91,6 @@ public class StartScene : MonoBehaviour
     void StartGame()
     {
         playerAnimator.SetTrigger("Start");
-        //dragonCtrl.SetFireIntensity(1f);
-        // µÂ∑°∞Ô¿Ã ∫“ª’¿Ω
-        //SceneLoader.Instance.ChangeScene("The_Viking_Village");
         SceneLoader.Instance.LoadGameScene();
     }
 

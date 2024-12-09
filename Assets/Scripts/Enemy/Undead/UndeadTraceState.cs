@@ -20,9 +20,4 @@ public class UndeadTraceState : StateMachineBehaviour
     {
         agent.SetDestination(playerTransform.position);
     }
-
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        
-    }
 }

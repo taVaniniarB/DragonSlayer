@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,19 +5,19 @@ public class HPSlider : MonoBehaviour
 {
     public Slider hpBar;
     public GameObject target;
-    private PlayerStat stat;
+    private PlayerState stat;
     void Start()
     {
-        stat = target.GetComponent<PlayerStat>();
-        hpBar.value = (float)stat.curHP / (float)stat.maxHP;
+        stat = target.GetComponent<PlayerState>();
+        UpdateHPBar();
     }
 
     void Update()
     {
-        HandleHPBar();
+        UpdateHPBar();
     }
 
-    private void HandleHPBar()
+    private void UpdateHPBar()
     {
         hpBar.value = (float)stat.curHP / (float)stat.maxHP;
     }

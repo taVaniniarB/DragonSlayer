@@ -41,14 +41,12 @@ public class PlayerInputController : MonoBehaviour
         dodge = value.isPressed;
     }
 
-    private void OnApplicationFocus(bool hasFocus) // 앱 포커스 시 커서 잠금
+    private void OnApplicationFocus(bool hasFocus)
     {
         if (hasFocus)
         {
-
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-
         }
     }
 }

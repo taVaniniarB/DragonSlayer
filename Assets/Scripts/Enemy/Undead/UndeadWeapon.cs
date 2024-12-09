@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class UndeadWeapon : MonoBehaviour
 {
-    PlayerStat target;
+    PlayerState target;
     public Undead undead;
 
     void Start()
     {
-        target = GameManager.Instance.playerInst.GetComponent<PlayerStat>();
+        target = GameManager.Instance.playerInst.GetComponent<PlayerState>();
     }
     public void OnTriggerEnter(Collider collider)
     {

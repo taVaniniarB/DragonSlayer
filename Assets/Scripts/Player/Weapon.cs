@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     EnemyHealth enemyHealth;
 
     CameraShacker camShake;
-    CameraShacker.CamShakeInfo camShakeInfo = new CameraShacker.CamShakeInfo(0.2f, 0.5f, 100f);
+    CameraShacker.CamShakeInfo camShakeInfo = new(0.2f, 0.5f, 100f);
 /*    float camShakeTime = 0.2f;
     float camShakeAmplitude = 0.5f;
     float camShakeFrequency = 100f;*/

@@ -5929,7 +5929,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.48822597
-        functionName: takeOff
+        functionName: TakeOff
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 8acb81fa2304a7242b4a109bfe8471c2,
           type: 3}

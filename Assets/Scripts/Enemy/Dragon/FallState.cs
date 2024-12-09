@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class FallState : StateMachineBehaviour
 {
-    float fallAmount = 0f;
     float targetHeight = 0f;
-    float stayY = 0f;
 
     float fallSpeed = 5f;
     Transform transform;
@@ -18,17 +16,21 @@ public class FallState : StateMachineBehaviour
         dragon.BreathEnd();
 
         transform = animator.transform;
-        stayY = transform.position.y;
-        // raycast로 높이 계산, 목표 도달 높이 계산
-        RaycastHit hit;
-        Physics.Raycast(transform.position, Vector3.down, out hit);
-        fallAmount = hit.distance;
-        targetHeight = stayY - fallAmount;
+
+        SetTargetHeight();
+    }
+
+    private void SetTargetHeight()
+    {
+        Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit);
+        targetHeight = hit.point.y;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        transform.position = new Vector3(transform.position.x, (transform.position.y - (fallSpeed * Time.deltaTime)), transform.position.z);
+        float newY = transform.position.y - (fallSpeed * Time.deltaTime);
+
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
 
         if(transform.position.y <= targetHeight)
         {

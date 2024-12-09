@@ -6,18 +6,17 @@ public class ChargeAttack : MonoBehaviour
 {
     public bool isCharging = false;
     public float damage = 2;
-    PlayerStat target;
+    PlayerState target;
 
     void Start()
     {
-        target = GameManager.Instance.playerInst.GetComponent<PlayerStat>();
+        target = GameManager.Instance.playerInst.GetComponent<PlayerState>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && isCharging)
         {
-            Debug.Log("돌진 공격에 피격");
             target.DecreaseHP(damage);
         }
     }

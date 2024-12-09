@@ -8,12 +8,6 @@ public class PlayerSkillState : StateMachineBehaviour
     {
         animator.applyRootMotion = true;
     }
-
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-    }
-
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.applyRootMotion = false;
