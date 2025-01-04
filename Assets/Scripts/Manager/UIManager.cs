@@ -28,6 +28,12 @@ public class UIManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     private void OnDestroy()
     {
         if (_instance == this)

@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     public GameObject bossAreaEnterChecker;
     public GameObject bossMonster;
     public Player playerInst { get; private set; }
-    CinemachineVirtualCamera vCam;
 
     public float bossDefeatToMenuTime = 8f; // 보스 처치 후 메인메뉴로 돌아가기까지의 대기 시간
 
@@ -53,10 +52,6 @@ public class GameManager : MonoBehaviour
         {
             _instance = null;
         }
-    }
-    private void Start()
-    {
-        vCam = FindObjectOfType<CinemachineVirtualCamera>();
     }
     public void Clear()
     {

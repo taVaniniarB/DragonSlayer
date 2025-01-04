@@ -43,7 +43,7 @@ public class SceneLoader : MonoBehaviour
         yield return unloadOp;
 
         // 메인메뉴로 이동하는 경우, 게임매니저는 전투 씬만 관리하는 싱글턴 매니저이므로 없애준다
-        if(sceneName == "MainMenu" && GameManager.Instance)
+        if(GameManager.Instance)
         {
             Destroy(GameManager.Instance.gameObject);
             GameManager.Instance.Clear(); // 싱글턴 참조 제거

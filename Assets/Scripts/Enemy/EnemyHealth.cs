@@ -33,8 +33,6 @@ public class EnemyHealth : MonoBehaviour
             else if (gm.currentState == GameState.BossBattle)
                 gm.BossDefeated();
         }
-
-
     }
     public void IncreaseHP(float amount)
     {
