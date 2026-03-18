@@ -1,6 +1,10 @@
 # Unity 3D 프로젝트
 
-<img src="https://imgur.com/IhnTNVk.png" width="600">
+<img src="https://imgur.com/IhnTNVk.png">
+
+- **기간:** 2024.11 – 2024.12 (1개월)
+- **개발:** 1인 프로젝트
+- **기술:** Unity, C#
 
 ## 1. 플레이어 캐릭터 구현
 
