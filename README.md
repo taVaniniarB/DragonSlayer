@@ -8,16 +8,18 @@
     - 하나의 긴 애니메이션에 애니메이션 이벤트를 등록하여 콤보 공격 타이밍 제어
 
 - 스킬 (특수 공격) - 투사체 발사
-<img src="https://github.com/user-attachments/assets/ae4a7aca-7ef6-4c27-bd0f-e98c18c2d9ac" width="600">
-    - 애니메이션 이벤트를 등록하여 구현
-    - 투사체는 속력이 일정하며, 발사 시점 **메인 카메라의 forward 방향**으로 나아간다.
-        - 투사체의 등속도운동을 간편하게 구현하기 위해 Rigidbody 컴포넌트 사용
-    - 투사체는 플레이어를 제외한 충돌체와 충돌 시 소멸된다.
-        - 플레이어와 투사체 간 충돌은 Unity 에디터 내의 충돌 매트릭스를 설정하여 감지되지 않도록 함
+
+<img src="https://github.com/user-attachments/assets/2f6734da-7ceb-480b-8e74-e48aa5ebef08" width="600">
+
+- 애니메이션 이벤트를 등록하여 구현
+- 투사체는 속력이 일정하며, 발사 시점 **메인 카메라의 forward 방향**으로 나아간다.
+  - 투사체의 등속도운동을 간편하게 구현하기 위해 Rigidbody 컴포넌트 사용
+  - 투사체는 플레이어를 제외한 충돌체와 충돌 시 소멸된다.
+    - 플레이어와 투사체 간 충돌은 Unity 에디터 내의 충돌 매트릭스를 설정하여 감지되지 않도록 함
      
 ## 2. 드래곤 (보스 몬스터) 구현
 
-<img src="https://imgur.com/GT10TV2" width="600">
+<img src="https://imgur.com/GT10TV2.png" width="600">
 
 드래곤은 다음의 행동을 할 수 있다:
 - 공격하기 (물기/돌진/브레스)
